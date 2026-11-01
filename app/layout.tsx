@@ -113,15 +113,19 @@ export default function RootLayout({
             <FloatingContact />      
             <Toaster />
             <Analytics />
-           
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVRTZG1WGW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+              <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
 
-  gtag('config', 'G-XVRTZG1WGW');
-</script>
+                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+              `}
+            </Script>
           </AuthProvider>
         </ThemeProvider>
       </body>
